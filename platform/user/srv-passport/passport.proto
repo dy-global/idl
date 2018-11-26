@@ -84,7 +84,7 @@ message TokenSignInReq {
     string Token = 2;
     string Mobile = 3;
     int32 AppID = 4;
-    string ExtraInfo = 4;
+    string ExtraInfo = 5;
 }
 
 message TokenSignInResp {
