@@ -5,5 +5,22 @@ package platform.user.srv.info;
 import "base.proto";
 
 service UserInfo {
-
+    //查询用户信息
+    rpc GetUserInfo(GetUserInfoReq)returns(CommonResp);
 }
+
+
+
+//获取用户信息请求参数
+message GetUserInfoReq{
+ int64 UserId = 1;//#UserId
+ repeated string  AttrNameList = 2;//    # 属性名称  不带此参数，返回基础属性
+ int32 AppId = 3;//                    # 请求来源
+}
+
+message CommonResp{
+    base.Resp BaseResp  = 1;// 返回值
+    string Data = 2; // 响应数据
+}
+
+
