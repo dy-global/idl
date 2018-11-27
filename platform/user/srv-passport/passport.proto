@@ -28,14 +28,15 @@ service Passport{
 
 message SignUpReq {
     int64 DeviceID = 1;
-    string Mobile = 2;
-    string Email = 3;
-    string Password = 4;
-    string Code = 5;
-    int32 ActiveType = 6;
-    int32 AppID = 7;
-    string version = 8;
-    string ExtraInfo = 9;
+    string Name = 2;
+    string Mobile = 3;
+    string Email = 4;
+    string Password = 5;
+    string Code = 6;
+    int32 ActiveType = 7;
+    int32 AppID = 8;
+    string Version = 9;
+    string ExtraInfo = 10;
 }
 
 message SignUpResp {

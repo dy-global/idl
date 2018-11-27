@@ -1,0 +1,16 @@
+syntax="proto3";
+
+package platform.id.srv.snowflake;
+
+service SnowFlake {
+    rpc GetID(GetIDReq) returns (GetIDResp);
+}
+
+
+message GetIDReq{
+    int64 Num = 1;
+}
+
+message GetIDResp{
+    repeated int64 IDs = 1;
+}

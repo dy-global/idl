@@ -3,7 +3,6 @@ syntax="proto3";
 package platform.user.srv.info;
 
 import "base.proto";
-import "platform/user/srv-passport/passport.proto";
 
 service UserInfo {
 
