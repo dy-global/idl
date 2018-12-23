@@ -1,0 +1,36 @@
+syntax="proto3";
+
+package dayan.state.srv.state;
+
+import "base.proto";
+
+
+service State{
+    rpc RecordPhoneOnline(RecordReq) returns (RecordResp);
+    rpc RecordPcOnline(RecordReq) returns (RecordResp);
+
+    rpc RemovePhoneOnline(RemoveReq) returns (RemoveResp);
+    rpc RemovePcOnline(RemoveReq) returns (RemoveResp);
+}
+
+
+message RecordReq{
+    int64 Uid = 1;
+    string SrvName = 2;
+    int32  Srvid = 3;    
+}
+
+message RecordResp{
+    base.Resp BaseResp = 1; 
+}
+
+
+message RemoveReq{
+    int64 Uid = 1;
+    string SrvName = 2;
+    int32 Srvid = 3;
+}
+
+message RemoveResp{
+    base.Resp BaseResp = 1;
+}
