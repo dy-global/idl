@@ -2,11 +2,13 @@ syntax="proto3";
 package base;
 
 enum CODE {
-    SUCESS = 0;
+    OK = 0;
     FAILED = 1;
     ENCODE_FAILED = 2;
     DECODE_FAILED = 3;
     SERVICE_EXCEPTION = 4; //服务异常
+
+    DATA_EXCEPTION = 10; // 数据异常
 }
 
 message Resp {
