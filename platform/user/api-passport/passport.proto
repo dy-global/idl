@@ -1,0 +1,46 @@
+syntax="proto3";
+
+package platform.user.srv.passport;
+
+import "base.proto";
+
+service Passport{
+    // 注册
+    rpc SignUp(SignUpReq) returns (SignUpResp);
+
+	// 微信登陆
+    rpc WeChatSignIn(WeChatSignInReq) returns (WeChatSignInResp);
+
+}
+
+message SignUpReq {
+    int64  DeviceID = 1;
+    string Name = 2;
+    string Mobile = 3;
+    string Email = 4;
+    string Password = 5;
+    string MsgCode = 6;
+    int32  ActiveType = 7;
+    int32  AppID = 8;
+    string Version = 9;
+    string ExtraInfo = 10;
+}
+
+message SignUpResp {
+    int64 UserID = 1;
+    string Mobile = 2;
+    base.Resp BaseResp = 3;
+}
+
+message WeChatSignInReq {
+    int64 DeviceID = 1;
+    string Code = 2; // 微信登陆凭证码
+    string AppID = 3; // 小程序appid
+    string Secret = 4; // 小程序app secret
+    string ExtraInfo = 5;
+}
+
+message WeChatSignInResp {
+    int64 UserID = 1;
+    base.Resp BaseResp = 2;
+}
