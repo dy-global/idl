@@ -9,9 +9,10 @@ enum CODE {
     SERVICE_EXCEPTION = 4; //服务异常
 
     DATA_EXCEPTION = 10; // 数据异常
+    INVALID_PARAMETER = 11; //非法参数
 }
 
 message Resp {
-    uint32 Code = 1;
-    string Desc = 2;
+    int32  Code = 1;
+    string Msg  = 2;
 }
