@@ -1,0 +1,71 @@
+syntax="proto3";
+
+package dayan.community.srv.info;
+
+import "base.proto";
+
+service CommunityInfo {
+	// 添加小区
+	rpc AddCommunity(AddCommunityReq) returns (AddCommunityResp);
+	// 删除小区
+	rpc DelCommunity(DelCommunityReq) returns (DelCommunityResp);
+	// 查看小区
+	rpc GetCommunity(GetCommunityReq) returns (GetCommunityResp);
+
+}
+
+
+
+message AddCommunityReq{
+	string Name  = 1;        
+	string Province = 2;    
+	string City = 3;
+	string Region  = 4;      
+	string Street  = 5;
+	int64 CouncilID = 6;    
+	int64 OrgID = 7;        
+	int32 HouseCount     = 8;
+	int32 CheckInCount  = 9;
+	int32 BuildingArea   = 10;
+	int32 GreeningArea   = 11;
+	repeated float Loc   = 12;         
+	int32 State          = 13;
+	int64 OperatorID    = 14;
+}
+
+message AddCommunityResp{
+	base.Resp BaseResp = 1;
+	int64 CommunityID = 2;
+}
+
+message DelCommunityReq{
+	int64 CommunityID = 1;
+}
+
+message DelCommunityResp{
+	base.Resp BaseResp = 1;
+}
+
+message GetCommunityReq{
+	int64 CommunityID = 1;
+}
+
+message GetCommunityResp{
+	base.Resp BaseResp = 1;	
+	string Name  = 2;        
+	string Province = 3;    
+	string City = 4;
+	string Region  = 5;      
+	string Street  = 6;
+	int64 CouncilID = 7;    
+	int64 OrgID = 8;        
+	int32 HouseCount     = 9;
+	int32 CheckInCount  = 10;
+	int32 BuildingArea   = 11;
+	int32 GreeningArea   = 12;
+	repeated float Loc   = 13;         
+	int32 State          = 14;
+	int64 OperatorID    = 15;
+	int64 CreatedAt = 16;
+	int64 UpdatedAt = 17;	
+}

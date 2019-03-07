@@ -104,7 +104,8 @@ message WeChatSignInReq {
 
 message WeChatSignInResp {
     int64 UserID = 1;
-    base.Resp BaseResp = 2;
+    bool IsFirstSignIn = 2;
+    base.Resp BaseResp = 3;
 }
 
 message SignOutReq{

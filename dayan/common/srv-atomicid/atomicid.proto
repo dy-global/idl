@@ -1,0 +1,18 @@
+syntax="proto3";
+
+package dayan.common.srv.atomicid;
+
+import "base.proto";
+
+service AtomicID {
+	rpc GetID(GetIDReq) returns (GetIDResp);
+}
+
+message GetIDReq {
+	string label = 1;
+}
+
+message GetIDResp {
+	base.Resp BaseResp = 1;
+	int64 id = 2;
+}

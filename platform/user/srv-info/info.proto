@@ -6,8 +6,9 @@ import "base.proto";
 
 service UserInfo {
     //查询用户信息
-    rpc GetUserInfo(GetUserInfoReq)returns(CommonResp);
-    rpc CreateUser(CreateUserReq) returns(CommonResp);
+    rpc GetUserInfo(GetUserInfoReq)returns(GetUserInfoResp);
+    // 创建用户
+    rpc CreateUser(CreateUserReq) returns(CreateUserResp);
 }
 
 
@@ -15,19 +16,23 @@ service UserInfo {
 //获取用户信息请求参数
 message GetUserInfoReq{
     int64 UserId = 1;//#UserId
-    repeated string  AttrNameList = 2;//    # 属性名称  不带此参数，返回基础属性
-    int32 AppId = 3;//                    # 请求来源
+    repeated string  Fields = 2;//    # 属性名称  不带此参数，返回基础属性
+    string AppId = 3;//                    # 请求来源
 }
 
-message CommonResp{
+message GetUserInfoResp{
     base.Resp BaseResp  = 1;// 返回值
-    string Data = 2; // 响应数据
+    string data = 2; // json数据
 }
 
 message CreateUserReq{
-    int64 UserId =1;
+    int64 UserId = 1;
     string NickName = 2;
-    string Gender = 3;
+    base.Gender Gender = 3;
     string AvatarUrl = 4;
-    int64 UserType = 5;
 }
+
+message CreateUserResp {
+    base.Resp BaseResp  = 1;// 返回值
+}
+

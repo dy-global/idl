@@ -1,6 +1,6 @@
 syntax="proto3";
 
-package platform.user.srv.passport;
+package platform.user.api.passport;
 
 import "base.proto";
 

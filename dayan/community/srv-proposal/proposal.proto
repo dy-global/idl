@@ -1,0 +1,104 @@
+syntax="proto3";
+
+package dayan.community.srv.proposal;
+
+import "base.proto";
+
+service Proposal {
+    //增加议案
+    rpc NewProposal(NewProposalReq) returns (NewProposalResp);
+    // 获取议案详情
+    rpc GetProposalInfo(GetProposalInfoReq) returns (GetProposalInfoResp);
+    // 修改议案
+    rpc ModifyProposal(ModifyProposalReq) returns (ModifyProposalResp);
+    // 获取评论和点赞数
+    rpc GetComments(GetCommentsReq) returns (GetCommentsResp);
+    // 评论议案
+    rpc CommentProposal(CommentProposalReq) returns (CommentProposalResp);
+    // 议案投票
+    rpc VoteProposal(VoteProposalReq) returns (VoteProposalResp);
+    // 获取议案列表
+    rpc GetProposalList(GetProposalListReq) returns (GetProposalListResp);
+}
+
+message NewProposalReq {
+    string Title = 1; // 标题
+    string Content = 2; // 内容
+    repeated string Imgs = 3; // 图片地址
+    repeated string Options = 4; // 议案选项
+    int64 Creator = 5;
+    int64 CommunityID = 6;
+}
+
+message NewProposalResp {
+    base.Resp BaseResp = 1;
+    int64 ProposalID = 2; // 议案id
+}
+
+message GetProposalInfoReq {
+    int64 ProposalID = 1;
+}
+
+message GetProposalInfoResp {
+    base.Resp BaseResp = 1;    
+    int64 ProposalID = 2;
+    string Title = 3;
+    string Content = 4;
+    bytes VoteInfo = 5; // 投票详情
+    int64 Creator = 6;
+    int64 CreatedAt = 7;
+    int64 UpdatedAt = 8;
+}
+
+message ModifyProposalReq {
+    int64 ProposalID = 1; // 议案id
+    string Title = 2; // 标题
+    string Content = 3; // 内容
+    repeated string Imgs = 4; // 图片地址
+}
+
+message ModifyProposalResp {
+    base.Resp BaseResp = 1;
+}
+
+message GetCommentsReq {
+    int64 ProposalID = 1; // 议案id    
+}
+
+message GetCommentsResp {
+
+}
+
+message CommentProposalReq {
+
+}
+
+message CommentProposalResp {
+    base.Resp BaseResp = 1;
+}
+
+message VoteProposalReq {
+    int64 ProposalID = 1;
+    int64 voter = 2;
+    string option = 3; // 投票选项
+}
+
+message VoteProposalResp {
+    base.Resp BaseResp = 1;
+}
+
+message GetProposalListReq {
+    int32 State = 1; // 根据议案状态查询
+    int32 Page = 2; // 分页页码
+    int64 CommunityID = 3;
+}
+
+message ProposalInfo {
+    int64 ID = 1;
+    string Title = 2;
+}
+
+message GetProposalListResp {
+    base.Resp BaseResp = 1;
+    repeated ProposalInfo Proposals = 2;
+}

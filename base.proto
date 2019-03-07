@@ -16,3 +16,14 @@ message Resp {
     int32  Code = 1;
     string Msg  = 2;
 }
+
+enum Gender {
+    Unkonw = 0; // 未知
+    Male   = 1; // 男性
+    Female = 2; // 女性
+}
+
+message Location {
+	float Longitude = 1;
+	float Latitude = 2;
+}
