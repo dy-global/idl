@@ -1,0 +1,68 @@
+syntax="proto3";
+
+package dayan.user.srv.rbac;
+
+import "base.proto";
+
+service RBAC {
+	// 添加角色
+	rpc AddRole(AddRoleReq) returns (AddRoleResp);
+	// 删除角色
+	rpc DelRole(DelRoleReq) returns (DelRoleResp);
+	// 添加权限
+	rpc AddAccess(AddAccessReq) returns (AddAccessResp);
+	// 添加角色
+	rpc DelAccess(DelAccessReq) returns (DelAccessResp);
+	// 为角色添加权限
+	rpc AssignRoleAccess(AssignRoleAccessReq) returns (AssignRoleAccessResp);
+	// 为角色添加权限
+	rpc UnassignRoleAccess(UnassignRoleAccessReq) returns (UnassignRoleAccessResp);
+}
+
+message AddRoleReq {
+
+}
+
+message AddRoleResp {
+
+}
+
+message DelRoleReq {
+
+}
+
+message DelRoleResp {
+
+}
+
+message AddAccessReq {
+
+}
+
+message AddAccessResp {
+
+}
+
+message DelAccessReq {
+
+}
+
+message DelAccessResp {
+
+}
+
+message AssignRoleAccessReq {
+
+}
+
+message AssignRoleAccessResp {
+
+}
+
+message UnassignRoleAccessReq {
+
+}
+
+message UnassignRoleAccessResp {
+	
+}
