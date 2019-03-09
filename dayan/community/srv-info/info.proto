@@ -12,11 +12,30 @@ service CommunityInfo {
 	// 查看小区
 	rpc GetCommunity(GetCommunityReq) returns (GetCommunityResp);
 
+	//资产
+	rpc AddAsset(AddAssetReq) returns (AddAssetResp);
+
+	rpc DelAsset(DelAssetReq) returns (DelAssetResp);
+
+	rpc GetAsset(GetAssetReq) returns (GetAssetResp);
+
+	//楼宇
+	rpc AddBuilding(AddBuildingReq) returns (AddBuildingResp);
+
+	rpc DelBuilding(DelBuilingReq) returns (DelBuilingResp);
+
+	rpc GetBuilding(GetBuildingReq) returns (GetBuildingResp);
+
+	//房屋
+	rpc AddHouse(AddHouseReq) returns (AddHouseResp);
+
+	rpc DelHouse(DelHouseReq) returns (DelHouseResp);
+
+	rpc GetHouse(GetHouseReq) returns (GetHouseResp);
+
 }
 
-
-
-message AddCommunityReq{
+message CommunityCommon {
 	string Name  = 1;        
 	string Province = 2;    
 	string City = 3;
@@ -31,6 +50,12 @@ message AddCommunityReq{
 	repeated float Loc   = 12;         
 	int32 State          = 13;
 	int64 OperatorID    = 14;
+}
+
+
+
+message AddCommunityReq{
+	CommunityCommon Community = 1;
 }
 
 message AddCommunityResp{
@@ -52,20 +77,117 @@ message GetCommunityReq{
 
 message GetCommunityResp{
 	base.Resp BaseResp = 1;	
-	string Name  = 2;        
-	string Province = 3;    
-	string City = 4;
-	string Region  = 5;      
-	string Street  = 6;
-	int64 CouncilID = 7;    
-	int64 OrgID = 8;        
-	int32 HouseCount     = 9;
-	int32 CheckInCount  = 10;
-	int32 BuildingArea   = 11;
-	int32 GreeningArea   = 12;
-	repeated float Loc   = 13;         
-	int32 State          = 14;
-	int64 OperatorID    = 15;
-	int64 CreatedAt = 16;
-	int64 UpdatedAt = 17;	
+	CommunityCommon Community = 2;
+	int64 CreatedAt = 3;
+	int64 UpdatedAt = 4;	
+}
+
+
+message AssetCommon {
+	string Serial = 1;
+	int32  Category = 2;
+	int32 State  = 3;
+	int64 CommunityID  = 4;
+	string loc = 5;
+	string Brand = 6;
+	string Desc = 7;
+	int64 OperatorID = 8;
+}
+
+message AddAssetReq {
+	AssetCommon Asset = 1;
+}
+
+message AddAssetResp{
+	base.Resp BaseResp = 1;
+	int64 AssetID = 2;
+}
+
+message DelAssetReq{
+	int64 AssetID = 1;
+}
+
+message DelAssetResp{
+	base.Resp BaseResp = 1;
+}
+
+message GetAssetReq {
+	int64 AssetID = 1;
+}
+
+message GetAssetResp{
+	base.Resp BaseResp = 1;
+	AssetCommon Asset =2;
+}
+
+
+message BuildingCommon {
+	string Name = 1;
+	int64 CommunityID = 2;
+	int32  Period = 3;
+	repeated int64 ElevatorID = 4;
+	repeated float Loc = 5;
+	int64 	OperatorID = 6;
+}
+
+message AddBuildingReq {
+	BuildingCommon Building = 1;
+}
+
+message AddBuildingResp {
+	base.Resp  BaseResp = 1;
+	int64 ID = 2;
+}
+
+message DelBuilingReq {
+	int64 ID = 1;
+}
+
+message DelBuilingResp {
+	base.Resp BaseResp = 1;
+}
+
+message GetBuildingReq{
+	int64 ID = 1;
+}
+
+message GetBuildingResp {
+	base.Resp BaseResp= 1;
+	BuildingCommon Building = 2;
+}
+
+message HouseCommon {
+	int64 BuildingID =1;
+	string Unit = 2;
+	float Acreage = 3;
+	int32 State = 4;
+	int32 Rental = 5;
+	int64 OperatorID = 6;
+}
+
+message AddHouseReq {
+	HouseCommon House = 1;
+}
+
+message AddHouseResp{
+	base.Resp BaseResp = 1;
+}
+
+message  DelHouseReq {
+	int64 ID = 1;
+}
+
+message DelHouseResp{
+	base.Resp BaseResp = 1;
+}
+
+message GetHouseReq{
+	int64 ID = 1;
+}
+
+message GetHouseResp{
+	base.Resp BaseResp = 1;
+	HouseCommon House = 2;
+	int64 CreatedAt = 3;
+	int64 UpdatedAt = 4;
 }
