@@ -36,21 +36,22 @@ service CommunityInfo {
 }
 
 message CommunityCommon {
-	string Name  = 1;        
-	string Province = 2;    
-	string City = 3;
-	string Region  = 4;      
-	string Street  = 5;
-	string SerialNumber = 6;
-	int64 OrgID = 7;        
-	int32 HouseCount     = 8;
-	int32 CheckInCount  = 9;
-	float BuildingArea   = 10;
-	float GreeningArea   = 11;
-	repeated float Loc   = 12;         
-	int32 State          = 13;
-	int32 SealedState = 14;
-	int64 OperatorID    = 15;
+	int64  ID = 1;
+	string Name  = 2;        
+	string Province = 3;    
+	string City = 4;
+	string Region  = 5;      
+	string Street  = 6;
+	string SerialNumber = 7;
+	int64 OrgID = 8;        
+	int32 HouseCount     = 9;
+	int32 CheckInCount  = 11;
+	float BuildingArea   = 12;
+	float GreeningArea   = 13;
+	repeated float Loc   = 14;         
+	int32 State          = 15;
+	int32 SealedState = 16;
+	int64 OperatorID    = 17;
 }
 
 
@@ -85,14 +86,15 @@ message GetCommunityResp{
 
 
 message AssetCommon {
-	string Serial = 1;
-	int32  Category = 2;
-	int32 State  = 3;
-	int64 CommunityID  = 4;
-	string loc = 5;
-	string Brand = 6;
-	string Desc = 7;
-	int64 OperatorID = 8;
+	int64  ID = 1;
+	string SerialNumber = 2;
+	int32  Category = 3;
+	int32 State  = 4;
+	int64 CommunityID  = 5;
+	string loc = 6;
+	string Brand = 7;
+	string Desc = 8;
+	int64 OperatorID = 9;
 }
 
 message AddAssetReq {
@@ -123,12 +125,13 @@ message GetAssetResp{
 
 
 message BuildingCommon {
-	string Name = 1;
-	int64 CommunityID = 2;
-	int32  Period = 3;
-	repeated int64 ElevatorID = 4;
-	repeated float Loc = 5;
-	int64 	OperatorID = 6;
+	int64 ID = 1;
+	string Name = 2;
+	int64 CommunityID = 3;
+	int32  Period = 4;
+	repeated int64 ElevatorID = 5;
+	repeated float Loc = 6;
+	int64 	OperatorID = 7;
 }
 
 message AddBuildingReq {
@@ -158,12 +161,13 @@ message GetBuildingResp {
 }
 
 message HouseCommon {
-	int64 BuildingID =1;
-	string Unit = 2;
-	float Acreage = 3;
-	int32 State = 4;
-	int32 Rental = 5;
-	int64 OperatorID = 6;
+	int64 ID = 1;
+	int64 BuildingID =2;
+	string Unit = 3;
+	float Acreage = 4;
+	int32 State = 5;
+	int32 Rental = 6;
+	int64 OperatorID = 7;
 }
 
 message AddHouseReq {
