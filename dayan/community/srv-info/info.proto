@@ -44,8 +44,8 @@ message CommunityCommon {
 	int64 OrgID = 8;        
 	int32 HouseCount     = 9;
 	int32 CheckInCount  = 10;
-	int32 BuildingArea   = 11;
-	int32 GreeningArea   = 12;
+	float BuildingArea   = 11;
+	float GreeningArea   = 12;
 	repeated float Loc   = 13;         
 	int32 State          = 14;
 	int64 OperatorID    = 15;
