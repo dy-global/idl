@@ -10,19 +10,26 @@ service CommunityInfo {
 	// 删除小区
 	rpc DelCommunity(DelCommunityReq) returns (DelCommunityResp);
 	// 查看小区
+	rpc GetCommunityByID(GetCommunityByIDReq) returns (GetCommunityByIDResp);
+
 	rpc GetCommunity(GetCommunityReq) returns (GetCommunityResp);
 
+	rpc GetCommunityByLoc(GetCommunityByLocReq) returns (GetCommunityByLocResp);
 	//资产
 	rpc AddAsset(AddAssetReq) returns (AddAssetResp);
 
 	rpc DelAsset(DelAssetReq) returns (DelAssetResp);
+
+	rpc GetAssetByID(GetAssetByIDReq) returns (GetAssetByIDResp);
 
 	rpc GetAsset(GetAssetReq) returns (GetAssetResp);
 
 	//楼宇
 	rpc AddBuilding(AddBuildingReq) returns (AddBuildingResp);
 
-	rpc DelBuilding(DelBuilingReq) returns (DelBuilingResp);
+	rpc DelBuilding(DelBuildingReq) returns (DelBuildingResp);
+
+	rpc GetBuildingByID(GetBuildingByIDReq) returns (GetBuildingByIDResp);
 
 	rpc GetBuilding(GetBuildingReq) returns (GetBuildingResp);
 
@@ -31,147 +38,214 @@ service CommunityInfo {
 
 	rpc DelHouse(DelHouseReq) returns (DelHouseResp);
 
-	rpc GetHouse(GetHouseReq) returns (GetHouseResp);
+	rpc GetHouseByID(GetHouseByIDReq) returns (GetHouseByIDResp);
 
+	rpc GetHouse(GetHouseReq) returns (GetHouseResp);
 }
 
 message CommunityCommon {
-	int64  ID = 1;
-	string Name  = 2;        
-	string Province = 3;    
-	string City = 4;
-	string Region  = 5;      
-	string Street  = 6;
-	string SerialNumber = 7;
-	int64 OrgID = 8;        
-	int32 HouseCount     = 9;
-	int32 CheckInCount  = 11;
-	float BuildingArea   = 12;
-	float GreeningArea   = 13;
-	repeated float Loc   = 14;         
-	int32 State          = 15;
-	int32 SealedState = 16;
-	int64 OperatorID    = 17;
+	int64  id = 1;
+	string name  = 2;        
+	string province = 3;    
+	string city = 4;
+	string region  = 5;      
+	string street  = 6;
+	string serialNumber = 7;
+	int64 orgID = 8;        
+	int32 houseCount     = 9;
+	int32 checkInCount  = 11;
+	float buildingArea   = 12;
+	float greeningArea   = 13;
+	repeated float loc   = 14;         
+	int32 state          = 15;
+	int32 sealedState = 16;
+	int64 operatorID    = 17;
 }
 
-
+message Community {
+	CommunityCommon common = 1;
+	int64 updatedAt = 2;
+	int64 createdAt = 3;
+}
 
 message AddCommunityReq{
-	CommunityCommon Community = 1;
+	CommunityCommon community = 1;
 }
 
 message AddCommunityResp{
-	base.Resp BaseResp = 1;
-	int64 CommunityID = 2;
+	base.Resp baseResp = 1;
+	int64 communityID = 2;
 }
 
 message DelCommunityReq{
-	int64 CommunityID = 1;
+	int64 communityID = 1;
 }
 
 message DelCommunityResp{
-	base.Resp BaseResp = 1;
+	base.Resp baseResp = 1;
 }
 
-message GetCommunityReq{
-	int64 CommunityID = 1;
+message GetCommunityByIDReq{
+	int64 communityID = 1;
+}
+
+message GetCommunityByIDResp{
+	base.Resp baseResp = 1;	
+	Community community = 2;
+}
+
+message GetCommunityReq {
+	int32 limit = 1;
+	int32 offset = 2;
 }
 
 message GetCommunityResp{
-	base.Resp BaseResp = 1;	
-	CommunityCommon Community = 2;
-	int64 CreatedAt = 3;
-	int64 UpdatedAt = 4;	
+	base.Resp baseResp = 1;
+	repeated Community community= 2;
+}
+
+message GetCommunityByLocReq{
+	int32 limit = 1;
+	int32 offset = 2;
+	repeated float  loc = 3;
+	float distance = 4;
+}
+
+message GetCommunityByLocResp{
+	base.Resp baseResp = 1;
+	repeated Community community = 2;
 }
 
 
 message AssetCommon {
-	int64  ID = 1;
-	string SerialNumber = 2;
-	int32  Category = 3;
-	int32 State  = 4;
-	int64 CommunityID  = 5;
+	int64  id = 1;
+	string serialNumber = 2;
+	int32  category = 3;
+	int32 state  = 4;
+	int64 communityID  = 5;
 	string loc = 6;
-	string Brand = 7;
-	string Desc = 8;
-	int64 OperatorID = 9;
+	string brand = 7;
+	string desc = 8;
+	int64 operatorID = 9;
+}
+message Asset {
+	AssetCommon common = 1;
+	int64 createdAt = 2;
+	int64 updatedAt = 3;
 }
 
 message AddAssetReq {
-	AssetCommon Asset = 1;
+	AssetCommon asset = 1;
 }
 
 message AddAssetResp{
-	base.Resp BaseResp = 1;
-	int64 AssetID = 2;
+	base.Resp baseResp = 1;
+	int64 assetID = 2;
 }
 
 message DelAssetReq{
-	int64 AssetID = 1;
+	int64 assetID = 1;
 }
 
 message DelAssetResp{
-	base.Resp BaseResp = 1;
+	base.Resp baseResp = 1;
+}
+
+message GetAssetByIDReq {
+	int64 assetID = 1;
+}
+
+message GetAssetByIDResp{
+	base.Resp baseResp = 1;
+	Asset asset =2;
 }
 
 message GetAssetReq {
-	int64 AssetID = 1;
+	int32 limit = 1;
+	int32 offset = 2;
+	int32 communityID = 3;
 }
 
+
 message GetAssetResp{
-	base.Resp BaseResp = 1;
-	AssetCommon Asset =2;
+	base.Resp baseResp = 1;
+	repeated Asset asset = 2;
 }
 
 
 message BuildingCommon {
-	int64 ID = 1;
-	string Name = 2;
-	int64 CommunityID = 3;
-	int32  Period = 4;
-	repeated int64 ElevatorID = 5;
-	repeated float Loc = 6;
-	int64 	OperatorID = 7;
+	int64 id = 1;
+	string name = 2;
+	int64 communityID = 3;
+	int32  period = 4;
+	repeated int64 elevatorID = 5;
+	repeated float loc = 6;
+	int64 	operatorID = 7;
+}
+
+message Building {
+	BuildingCommon common = 1;
+	int64 createdAt = 2;
+	int64 updatedAt = 3;
+	
 }
 
 message AddBuildingReq {
-	BuildingCommon Building = 1;
+	BuildingCommon building = 1;
 }
 
 message AddBuildingResp {
-	base.Resp  BaseResp = 1;
-	int64 ID = 2;
+	base.Resp  baseResp = 1;
+	int64 id = 2;
 }
 
-message DelBuilingReq {
-	int64 ID = 1;
+message DelBuildingReq {
+	int64 id = 1;
 }
 
-message DelBuilingResp {
-	base.Resp BaseResp = 1;
+message DelBuildingResp {
+	base.Resp baseResp = 1;
+}
+
+message GetBuildingByIDReq{
+	int64 id = 1;
+}
+
+message GetBuildingByIDResp {
+	base.Resp baseResp= 1;
+	BuildingCommon building = 2;
 }
 
 message GetBuildingReq{
-	int64 ID = 1;
+	int32 limit = 1;
+	int32 offset = 2;
+	int64 communityID = 3;
+}
+message GetBuildingResp{
+	base.Resp baseResp = 1;
+	repeated  Building buildings = 2;
 }
 
-message GetBuildingResp {
-	base.Resp BaseResp= 1;
-	BuildingCommon Building = 2;
-}
+
 
 message HouseCommon {
-	int64 ID = 1;
-	int64 BuildingID =2;
-	string Unit = 3;
-	float Acreage = 4;
-	int32 State = 5;
-	int32 Rental = 6;
-	int64 OperatorID = 7;
+	int64 id = 1;
+	int64 buildingID =2;
+	string unit = 3;
+	float acreage = 4;
+	int32 state = 5;
+	int32 rental = 6;
+	int64 operatorID = 7;
+}
+
+message House{
+	HouseCommon common = 1;
+	int64 createdAt = 2;
+	int64 updatedAt = 3;
 }
 
 message AddHouseReq {
-	HouseCommon House = 1;
+	HouseCommon house = 1;
 }
 
 message AddHouseResp{
@@ -179,20 +253,29 @@ message AddHouseResp{
 }
 
 message  DelHouseReq {
-	int64 ID = 1;
+	int64 id = 1;
 }
 
 message DelHouseResp{
-	base.Resp BaseResp = 1;
+	base.Resp baseResp = 1;
 }
 
-message GetHouseReq{
-	int64 ID = 1;
+message GetHouseByIDReq{
+	int64 id = 1;
+}
+
+message GetHouseByIDResp{
+	base.Resp BaseResp = 1;
+	House house = 2;
+}
+
+message GetHouseReq {
+	int32 limit = 1;
+	int32 offset = 2;
+	int64 communityID = 3;
 }
 
 message GetHouseResp{
-	base.Resp BaseResp = 1;
-	HouseCommon House = 2;
-	int64 CreatedAt = 3;
-	int64 UpdatedAt = 4;
+	base.Resp baseResp = 1;
+	repeated House houses = 2;
 }
