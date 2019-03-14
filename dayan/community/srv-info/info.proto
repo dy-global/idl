@@ -250,6 +250,7 @@ message AddHouseReq {
 
 message AddHouseResp{
 	base.Resp BaseResp = 1;
+	int64 id = 2;
 }
 
 message  DelHouseReq {
