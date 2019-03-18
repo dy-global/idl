@@ -1,0 +1,42 @@
+syntax="proto3";
+
+package platform.user.srv.session;
+
+import "base.proto";
+
+
+
+service Session{
+    rpc Record(RecordReq) returns (RecordResp); 
+    rpc Refresh(RefreshReq) returns (RefreshResp);
+    rpc Query(QueryReq) returns (QueryResp);
+}
+
+
+message RecordReq{
+    int64 uID = 1;
+    int32 expireTime = 2;
+}
+
+message RecordResp{
+    base.Resp baseResp = 1;
+    string token = 2;
+}
+
+message RefreshReq{
+    string token = 1;
+    int32 expireTime = 2;
+}
+
+message RefreshResp{
+    base.Resp baseResp = 1;
+}
+
+message QueryReq{
+    string token = 1;
+}
+
+message QueryResp{
+    base.Resp baseResp = 1;
+    int64 uID = 2;
+}
